@@ -4,7 +4,6 @@ PortSystem          1.0
 PortGroup           golang 1.0
 
 go.setup            github.com/blacktop/ipsw 3.1.260 v
-github.setup        blacktop ipsw 3.1.260
 github.tarball_from archive
 revision            0
 
@@ -24,24 +23,16 @@ checksums           rmd160  b75c282510ec6736fc5ddf25e4a4ae2a87e66f85 \
                     sha256  158f5925209e5a65896c20c759e33aa75e7173ecfec158caf6a2ea451fed58fb \
                     size    3532123
 
-set build_script    ${worksrcpath}/_build.sh
-
 # Allow deps to be fetched at build-time.
 build.env-delete    GO111MODULE=off GOPROXY=off
 
-build.cmd           ${build_script}
-build.pre_args      {}
-build.args          {}
+set date [clock format [clock seconds] -format %Y%m%d -gmt yes]
+build.args          ./cmd/${name}
+build.args-prepend  -ldflags \"-X github.com/blacktop/ipsw/cmd/ipsw/cmd.AppVersion=${version}\" \
+                    -ldflags \"-X github.com/blacktop/ipsw/cmd/ipsw/cmd.AppBuildTime=${date}\"
 
-post-extract {
-    set bs [open "${build_script}" w+]
-    puts ${bs} "#!/bin/sh"
-    puts ${bs} "set -x"
-    puts ${bs} "CGO_ENABLED=1 ${go.bin} build -trimpath -ldflags \" -s -w -X github.com/blacktop/ipsw/cmd/ipsw/cmd.AppVersion=${version} -X github.com/blacktop/ipsw/cmd/ipsw/cmd.AppBuildTime=$(date -u +%Y%m%d) \" && \\"
-    puts ${bs} "./hack/make/completions"
-    close ${bs}
-
-    file attributes ${build_script} -permissions 0755
+post-build {
+    system "cd ${worksrcpath} && ./hack/make/completions"
 }
 
 destroot {
