@@ -46,7 +46,7 @@ destroot {
 
     set fish_comp_dir ${destroot}${prefix}/share/fish/vendor_completions.d
     xinstall -d ${fish_comp_dir}
-    copy ${worksrcpath}/completions/_fish ${fish_comp_dir}/
+    copy ${worksrcpath}/completions/_fish ${fish_comp_dir}/${name}.fish
 
     set zsh_comp_dir ${destroot}${prefix}/share/zsh/site-functions
     xinstall -d ${zsh_comp_dir}
