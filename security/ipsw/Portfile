@@ -42,13 +42,13 @@ destroot {
 
     set bash_comp_dir ${destroot}${prefix}/share/bash-completion/completions
     xinstall -d ${bash_comp_dir}
-    copy ${worksrcpath}/completions/_bash ${bash_comp_dir}/${name}
+    copy ${worksrcpath}/completions/ipsw/_bash ${bash_comp_dir}/${name}
 
     set fish_comp_dir ${destroot}${prefix}/share/fish/vendor_completions.d
     xinstall -d ${fish_comp_dir}
-    copy ${worksrcpath}/completions/_fish ${fish_comp_dir}/${name}.fish
+    copy ${worksrcpath}/completions/ipsw/_fish ${fish_comp_dir}/${name}.fish
 
     set zsh_comp_dir ${destroot}${prefix}/share/zsh/site-functions
     xinstall -d ${zsh_comp_dir}
-    copy ${worksrcpath}/completions/_zsh ${zsh_comp_dir}/_${name}
+    copy ${worksrcpath}/completions/ipsw/_zsh ${zsh_comp_dir}/_${name}
 }
