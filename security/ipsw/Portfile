@@ -3,7 +3,7 @@
 PortSystem          1.0
 PortGroup           golang 1.0
 
-go.setup            github.com/blacktop/ipsw 3.1.364 v
+go.setup            github.com/blacktop/ipsw 3.1.365 v
 github.tarball_from archive
 revision            0
 
@@ -19,9 +19,9 @@ installs_libs       no
 license             MIT
 maintainers         https://github.com/blacktop
 
-checksums           rmd160  087ce633295b51f22661b1c2b7bc4af95a050c44 \
-                    sha256  edd0a60cd0b5fd524744cd31f6c3dce9319a698d5677f5ddfb45f471e4c642eb \
-                    size    3759487
+checksums           rmd160  657357586f6434e5227c077e767aa5cd8df2e3a6 \
+                    sha256  6556ae6df8e27a3078dad4c84559b8e1a4580110f1f52b867d2deee5dc0f2f10 \
+                    size    3759574
 
 # Allow deps to be fetched at build-time.
 build.env-delete    GO111MODULE=off GOPROXY=off CGO_ENABLED=1
